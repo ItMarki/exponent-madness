@@ -228,7 +228,7 @@ function breakNumerals() {
 //otherwise know to pg as the dont touch funcs xD
 
 var currentTab = "main";
-	var notationArray = ["Standard","Scientific","Engineering","Logarithm"];
+	var notationArray = ["Standard 2.0","Scientific","Engineering","Logarithm"];
 function update(set,get){ // for updating display
 	document.getElementById(set).innerHTML=get
 }
@@ -239,18 +239,20 @@ function hideElement(elementID) { // makes an element invisible
 	document.getElementById(elementID).style.display="none";
 }
 function abbreviate(i) {
-	if(i==0) return "K"; // thousand
-	if(i==1) return "M"; // million
-	if(i==2) return "B"; // billion
-	var units = ["","U","D","T","Qa","Qt","Sx","Sp","O","N"]; // prefixes for ones place
-	var tens = ["","Dc","Vg","Tg","Qd","Qi","Se","St","Og","Nn"]; // prefixes for tens place
-	var hundreds = ["","Ce","Dn","Tc","Qe","Qu","Sc","Si","Oe","Ne"]
-	var i2=Math.floor(i/10);
-	var i3=Math.floor(i2/10);
-	var unit = units[i%10];
-	var ten = tens[i2%10];
-	var hundred = hundreds[i3%10];
-	return unit+ten+hundred;
+    if(i==0) return "k"; // thousand
+    if(i==1) return "M"; // million
+    if(i==2) return "B"; // billion
+    if(i==8) return "Oc";
+    if(i==9) return "No";
+    var units = ["","U","D","T","Qa","Qi","Sx","Sp","O","N"]; // prefixes for ones place
+    var tens = ["","Dc","Vg","Tg","Qag","Qig","Sxg","Spg","Og","Ng"]; // prefixes for tens place
+    var hundreds = ["","Cn","Dcn","Tcn","Qac","Qic","Sxc","Spx","Ocn","Nc"]
+    var i2=Math.floor(i/10);
+    var i3=Math.floor(i2/10);
+    var unit = units[i%10];
+    var ten = tens[i2%10];
+    var hundred = hundreds[i3%10];
+    return unit+ten+hundred;
 }
 function format(a) { // formats numbers for display
 	var e = Math.floor(Math.log10(a)); // exponent of number
