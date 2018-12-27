@@ -415,7 +415,7 @@ function updateThings() { // various updates on each tick
 	update('maxCPCost',format(game.clickPoints.maxCPCost))
 	update('secCPCost',format(game.clickPoints.secCPCost))
 	update('maxCP',format(game.clickPoints.maxClickPoints))
-	update('cpPerSec',format(game.clickPoints.CPPerSec))
+	update('cpPerSec',format(game.clickPoints.clickPointsPerSec))
 }
 
 function init() { // initialize
