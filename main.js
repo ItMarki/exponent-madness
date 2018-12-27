@@ -92,7 +92,7 @@ function microPrestige() {
 	game.clickPoints.clickPointsPerSec *= game.clickPoints.CPPerSecUpgrade
         updateBaseClick()
 	update('maxCP',format(game.clickPoints.maxClickPoints))
-	update('cpPerSec',format(game.clickPoints.CPPerSec))
+	update('cpPerSec',format(game.clickPoints.clickPointsPerSec))
 }
 function getTriangularNumber(num) {
 	//(n^2-n)/2
