@@ -91,6 +91,8 @@ function microPrestige() {
 	}
 	game.clickPoints.clickPointsPerSec *= game.clickPoints.CPPerSecUpgrade
         updateBaseClick()
+	update('maxCP',format(game.clickPoints.maxClickPoints))
+	update('cpPerSec',format(game.clickPoints.CPPerSec))
 }
 function getTriangularNumber(num) {
 	//(n^2-n)/2
@@ -354,6 +356,7 @@ function load(save) {
 	update('maxCPCost',format(game.clickPoints.maxCPCost))
 	update('secCPCost',format(game.clickPoints.secCPCost))
 	update('maxCP',format(game.clickPoints.maxClickPoints))
+	update('cpPerSec',format(game.clickPoints.CPPerSec))
 	} catch (e) {
 		console.log('Your save failed to load: '+e)
 	}
