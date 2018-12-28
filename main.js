@@ -95,7 +95,8 @@ function microPrestige() {
 	update('cpPerSec',format(game.clickPoints.clickPointsPerSec))
 }
 function updateClass(what,whatClass) {
-	document.getElementById(what).class = 'button ' + whatClass
+	what.className = ''
+	what.classList.add("button " + whatClass);
 }
 function updateButtons() {
 	if(game.num >= game.clickPoints.maxCPCost) {
