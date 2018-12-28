@@ -7,8 +7,8 @@
 		<script src='break_infinity.js'></script>
         </head>
         <body onload="init()">
-                Number: <div id="numDisplay">1</div>
-                <div id="microEssenceInfo" style="display:none">Micro Essence: <div id="microEssenceDisplay">0</div></div>
+                <p style="text-align:center;">Number: <div id="numDisplay">1</div></p>
+                <p style="text-align:right;"><div id="microEssenceInfo" style="display:none">Micro Essence: <div id="microEssenceDisplay">0</div></div></p>
                 <button class="button" onclick="switchTab('main')">Main</button>
                 <button class="button" onclick="switchTab('options')">Options</button>
 		<button class = 'button' onclick = 'switchTab("stats")'>Statistics</button>
@@ -17,9 +17,9 @@
 		<div id="main" style="display:inline-block">
                         <div id="increaseNumber">
                                 <button class="button" onclick="step()">Multiply the number by <div id="multDisplay">1.5</div> for 3 Click Points</button>
-                                You have <div id="clickPoints">0</div> Click Points.
-                                You are gaining <div id = 'cpPerSec'>1</div> per second
-                                Your max Click Points is <div id = 'maxCP'>3</div>
+                                <p>You have <div id="clickPoints">0</div> Click Points.</p>
+                                <p>You are gaining <div id = 'cpPerSec'>1</div> per second</p>
+                                <p>Your max Click Points is <div id = 'maxCP'>3</div></p>
                         </div>
                         <div id = 'numberUpgrades'>
                                 <button class = 'button' onclick = 'numUpgrade()'>Increase growth rate by 0.25 percent. Cost: Divides your number by<div id = 'numCost'>1000</div></button>
