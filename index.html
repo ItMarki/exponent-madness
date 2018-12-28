@@ -9,57 +9,57 @@
         <body onload="init()">
                 <p style="text-align:center;">Number: <div id="numDisplay">1</div></p>
                 <p style="text-align:right;"><div id="microEssenceInfo" style="display:none">Micro Essence: <div id="microEssenceDisplay">0</div></div></p>
-                <button class="button" onclick="switchTab('main')">Main</button>
-                <button class="button" onclick="switchTab('options')">Options</button>
-		<button class = 'button' onclick = 'switchTab("stats")'>Statistics</button>
-                <button id="microPrestigeTab" class="button" style="display:none" onclick="switchTab('microprestige')">Micro Prestige</button>
-                <button id = 'breakNumeralsTab' class = 'button' style = 'display:none' onclick = "switchTab('breaknumerals')">Break Numerals</button>
+                <button class="button unbuyable" onclick="switchTab('main')">Main</button>
+                <button class="button unbuyable" onclick="switchTab('options')">Options</button>
+		<button class = 'button unbuyable' onclick = 'switchTab("stats")'>Statistics</button>
+                <button id="microPrestigeTab" class="button unbuyable" style="display:none" onclick="switchTab('microprestige')">Micro Prestige</button>
+                <button id = 'breakNumeralsTab' class = 'button unbuyable' style = 'display:none' onclick = "switchTab('breaknumerals')">Break Numerals</button>
 		<div id="main" style="display:inline-block">
                         <div id="increaseNumber">
-                                <button class="button" onclick="step()">Multiply the number by <div id="multDisplay">1.5</div> for 3 Click Points</button>
+                                <button class="button unbuyable" onclick="step()">Multiply the number by <div id="multDisplay">1.5</div> for 3 Click Points</button>
                                 <p>You have <div id="clickPoints">0</div> Click Points.</p>
                                 <p>You are gaining <div id = 'cpPerSec'>1</div> per second</p>
                                 <p>Your max Click Points is <div id = 'maxCP'>3</div></p>
                         </div>
                         <div id = 'numberUpgrades'>
-                                <button class = 'button' onclick = 'numUpgrade()'>Increase growth rate by 0.25 percent. Cost: Divides your number by<div id = 'numCost'>1000</div></button>
-                                <button class = 'button' onclick = 'maxCPUpgrade()'>Increase your max CP by 1. Cost: Divides your number by <div id = 'maxCPCost'>1000</div></button>
-                                <button class = 'button' onclick = 'CPSecUpgrade()'>Increase your CP/sec by 1. Cost: Divides your number by <div id = 'secCPCost'>10B</div></button>
+                                <button class = 'button unbuyable' onclick = 'numUpgrade()'>Increase growth rate by 0.25 percent. Cost: Divides your number by<div id = 'numCost'>1000</div></button>
+                                <button class = 'button unbuyable' onclick = 'maxCPUpgrade()' id = 'CP1'>Increase your max CP by 1. Cost: Divides your number by <div id = 'maxCPCost'>1000</div></button>
+                                <button class = 'button unbuyable' onclick = 'CPSecUpgrade()' id = 'CP2'>Increase your CP/sec by 1. Cost: Divides your number by <div id = 'secCPCost'>10B</div></button>
                         </div>                
                         <div id="microPrestigeElement" style="display:none">
                                 Your number has overflowed, you must reset to continue.
-                                <button class="button" onclick="microPrestige()">Reset your number, but get 1 Micro essence for upgrades.</button>
+                                <button class="button unbuyable" onclick="microPrestige()">Reset your number, but get 1 Micro essence for upgrades.</button>
                         </div>
-                        <button class = 'button' onclick = 'microPrestige()' style = 'display:none' id = 'microReset'>Reset your number, but gain <div id = 'ueOnReset'>1</div> Micro Essence</button>
+                        <button class = 'button unbuyable' onclick = 'microPrestige()' style = 'display:none' id = 'microReset'>Reset your number, but gain <div id = 'ueOnReset'>1</div> Micro Essence</button>
                 </div>
                 <div id="options" style="display:none">
-                        <button class="button" onclick="save()">Save</button>
-                        <button class="button" onclick="importGame()">Import</save>
-                        <button class="button" onclick="exportGame()">Export</button>
-                        <button class="button" onclick="switchNotation()">Notation: <div id="notationDisplay">Standard</div></button>
-                        <button class="button" onclick="hardReset()">Reset the game</button>
+                        <button class="button unbuyable" onclick="save()">Save</button>
+                        <button class="button unbuyable" onclick="importGame()">Import</save>
+                        <button class="button unbuyable" onclick="exportGame()">Export</button>
+                        <button class="button unbuyable" onclick="switchNotation()">Notation: <div id="notationDisplay">Standard</div></button>
+                        <button class="button unbuyable" onclick="hardReset()">Reset the game</button>
                         <span id="exportInfo" style="display:none">Here is your export save:<input id="exportSave"></input></span>
                 </div>
 		<div id="microprestige" style="display:none">
 			<table>
 				<tr>
-					<td><button class="button" onclick="buyAupg(1)">Increase the base multiplier to 1.8667x.<br>Cost: 1 &micro;E</button></td>
-					<td><button class="button" onclick="buyAupg(2)">The number increases 1.2% per order of magnitude, additive.<br>Cost: 1 &micro;E</button></td>
-					<td><button class="button" onclick="buyAupg(3)">Max CP is doubled<br>Cost: 2 &micro;E</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(1)" id='A1'>Increase the base multiplier to 1.8667x.<br>Cost: 1 &micro;E</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(2)" id='A2'>The number increases 1.2% per order of magnitude, additive.<br>Cost: 1 &micro;E</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(3)" id='A3'>Max CP is doubled<br>Cost: 2 &micro;E</button></td>
 				</tr>
 				<tr>
-					<td><button class="button" onclick="buyAupg(4)">Increase the base multiplier to 2.5x.<br>Cost: 5 &micro;E</button></td>
-					<td><button class="button" onclick="buyAupg(5)">You start micro prestiges with 3 CP/sec<br>Cost: 10 &micro;E</button></td>
-					<td><button class = 'button' onclick = 'buyAupg(6)'>The growth factor is higher based on unspent µE. <br>Currently: <span id = 'A6power'>1</span>x.<br>Cost:14 µE</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(4)" id='A4'>Increase the base multiplier to 2.5x.<br>Cost: 5 &micro;E</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(5)" id='A5'>You start micro prestiges with 3 CP/sec<br>Cost: 10 &micro;E</button></td>
+					<td><button class = 'button' onclick = 'buyAupg(6)' id='A6'>The growth factor is higher based on unspent µE. <br>Currently: <span id = 'A6power'>1</span>x.<br>Cost:14 µE</button></td>
 				</tr>
 				<tr>
-					<td><button class="button" onclick="buyAupg(7)">Increase the base multiplier based on number of micro prestiges.<br>Currently: <span id="A7power">1</span>x.<br>Cost: 18 &micro;E</button></td>
-					<td><button class="button" onclick="buyAupg(8)">Increase the base multiplier by 5x if your number is below 1e33.<br>Cost: 50 &micro;E</button></td>
-					<td><button class = 'button' onclick = 'buyAupg(9)'> The growth factor is higher based on your current CP amount.<br>Currently: <span id = 'A9power'>1</span>x.<br>Cost: 100 µE</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(7)" id='A7'>Increase the base multiplier based on number of micro prestiges.<br>Currently: <span id="A7power">1</span>x.<br>Cost: 18 &micro;E</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(8)" id='A8'>Increase the base multiplier by 5x if your number is below 1e33.<br>Cost: 50 &micro;E</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyAupg(9)' id='A9'> The growth factor is higher based on your current CP amount.<br>Currently: <span id = 'A9power'>1</span>x.<br>Cost: 100 µE</button></td>
 				</tr>
 				<tr>
-					<td><button class="button" onclick="buyRepeatA()">You gain 10% more &micro;E.<br>Currently: <span id="microEssenceMult">1</span>x.<br>Cost: <span id="RepeatACost">25</span> &micro;E</button></td>
-					<td><button class="button" onclick="buyMaxRepeatA()">Max &micro;E Mult</button></td>
+					<td><button class="button unbuyable" onclick="buyRepeatA()" id='AR'>You gain 10% more &micro;E.<br>Currently: <span id="microEssenceMult">1</span>x.<br>Cost: <span id="RepeatACost">25</span> &micro;E</button></td>
+					<td><button class="button unbuyable" onclick="buyMaxRepeatA()">Max &micro;E Mult</button></td>
 				</tr>
 			</table>
 		</div>
@@ -67,21 +67,21 @@
 			<button class = 'button' onclick = 'breakNumerals()'>Break Numerals!</button>
 			<table>
 				<tr>
-					<td><button class = 'button' onclick = 'buyBupg(1)'>Increase the base multiplier to 3x Cost:160 &micro;E</button></td>
-					<td><button class = 'button' onclick = 'buyBupg(2)'>You start with <div id = 'B2Effect'>10B</div> Cost: 350 &micro;E</button></td>
-					<td><button class = 'button' onclick = 'buyBupg(3)'>The growth factor is higher based on the order of magnitudes the number has (1OoM=1.5%, 3OoM=3%…). Removes the effect of A2. Cost: 720 µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(1)' id='B1'>Increase the base multiplier to 3x Cost:160 &micro;E</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(2)' id='B2'>You start with <div id = 'B2Effect'>10B</div> Cost: 350 &micro;E</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(3)' id='B3'>The growth factor is higher based on the order of magnitudes the number has (1OoM=1.5%, 3OoM=3%…). Removes the effect of A2. Cost: 720 µE</button></td>
 				</tr>
 				<tr>
-					<td><button class = 'button' onclick = 'buyBupg(4)'>The growth factor is higher based on the amount of µE you have (1+(log(µE+1))/300). Cost: <div id = 'B4Cost'>1.5K</div> µE</button></td>
-					<td><button class = 'button' onclick = 'buyBupg(5)'>Button clicks now cost 2 CP.  Cost: <div id = 'B5Cost'>2.5K</div> µE</button></td>
-					<td><button class = 'button' onclick = 'buyBupg(6)'>Increase base growth factor to 4x, requires B1. Cost: <div id = 'B5Cost'>4K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(4)' id='B4'>The growth factor is higher based on the amount of µE you have (1+(log(µE+1))/300). Cost: <div id = 'B4Cost'>1.5K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(5)' id='B5'>Button clicks now cost 2 CP.  Cost: <div id = 'B5Cost'>2.5K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(6)' id='B6'>Increase base growth factor to 4x, requires B1. Cost: <div id = 'B5Cost'>4K</div> µE</button></td>
 					
 				</tr>
 				<tr>
-					<td><button class = 'button' onclick = 'buyBupg(7)'>You get 1 µE every button click. Cost: <div id = 'B6Cost'>18K</div> µE</button></td>
-					<td><button class = 'button' onclick = 'buyBupg(8)'>The growth factor is higher based on total button clicks (1+(log(clicks+1))/310). Cost: <div id = 'B7Cost'>100K</div> µE</button></td>
-					<td><button class = 'button' onclick = 'buyBupg(9)'> You now gain 1.5 CP/s. Cost: <div id = 'B8Cost'>240K</div> µE</button></td>
-					<td><button class = 'button' onclick = 'buyBupg(10)'>Unlock button autoclicker. Cost: <div id = 'B9Cost'>800K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(7)' id='B7'>You get 1 µE every button click. Cost: <div id = 'B6Cost'>18K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(8)' id='B8'>The growth factor is higher based on total button clicks (1+(log(clicks+1))/310). Cost: <div id = 'B7Cost'>100K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(9)' id='B9'> You now gain 1.5 CP/s. Cost: <div id = 'B8Cost'>240K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(10)' id='B10'>Unlock button autoclicker. Cost: <div id = 'B9Cost'>800K</div> µE</button></td>
 				</tr>
 					
         </body>
