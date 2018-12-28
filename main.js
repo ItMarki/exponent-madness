@@ -77,7 +77,7 @@ function microPrestige() {
 		},
 		
                 microPrestige:{
-                        essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(Math.log10(game.num),(1/2.2))):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
+                        essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(Math.ln(game.num),(1/2.2))):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
                         times: game.microPrestige.times+1,
                         essenceMult: game.microPrestige.essenceMult
                 },
@@ -116,7 +116,7 @@ function getCurrentClickAmt(){
         if (game.Aupgs.upgrades.includes("A7")) base *= 1+Math.log10(game.microPrestige.times)/10
 	base *= game.numUpgradeBoost
 	if(game.Aupgs.upgrades.includes('A6')) base *= 1 + Math.pow(game.microPrestige.essence,0.3)
-	if(game.Aupgs.upgrades.includes('A9')) base *= 1 + Math.log10(game.clickPoints.clickPoints)/10
+	if(game.Aupgs.upgrades.includes('A9')) base *= 1 + Math.log10(game.clickPoints.clickPoints+1)/10
 	if(game.Bupgs.upgrades.includes('B4')) base *= 1 + Math.log10(game.microPrestige.essence + 1)/300
 	if(game.Bupgs.upgrades.includes('B8')) base *= 1 + Math.log10(game.buttonClicks + 1)/310
         return base
