@@ -97,7 +97,8 @@ function microPrestige() {
 function updateClass(what,whatClass) {
 	var element = document.getElementById(what)
 	element.className = ''
-	element.classList.add("button " + whatClass);
+	element.classList.add("button");
+	element.classList.add(whatClass)
 }
 function updateButtons() {
 	if(game.num >= game.clickPoints.maxCPCost) {
