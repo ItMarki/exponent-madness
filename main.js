@@ -256,6 +256,7 @@ function buyBupg(number) {
 	if (game.microPrestige.essence >= cost && !(game.Bupgs.upgrades.includes(game.Bupgs.possible[number-1]))){
 		game.microPrestige.essence -= cost
 		game.Bupgs.upgrades.push(game.Bupgs.possible[number-1])
+		updateClass('B' + String(number),'bought')
 	}
 }
 function breakNumerals() {
