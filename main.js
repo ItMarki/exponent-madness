@@ -111,22 +111,22 @@ function updateButtons() {
 		updateClass('CP2','unbuyable')
 	}
 	for(i=0;i<9;i++) {
-		if(game.microPrestige.essence >= game.Aupgs.cost[i] && !(game.Aupgs.upgrades.includes('A'+String(i-1)))) {
-			updateClass('A'+String(i-1),'buyable')
+		if(game.microPrestige.essence >= game.Aupgs.cost[i] && !(game.Aupgs.upgrades.includes('A'+String(i+1)))) {
+			updateClass('A'+String(i+1),'buyable')
 		}
-		else if(game.microPrestige.essence < game.Aupgs.cost[i] && !(game.Aupgs.upgrades.includes('A'+String(i-1)))) {
-			updateClass('A'+String(i-1),'unbuyable')
+		else if(game.microPrestige.essence < game.Aupgs.cost[i] && !(game.Aupgs.upgrades.includes('A'+String(i+1)))) {
+			updateClass('A'+String(i+1),'unbuyable')
 		}
 	}
 	if(game.microPrestige.essence >= game.Aupgs.repeatable.cost) {
 		updateClass('AR','buyable')
 	}
 	for(i=0;i<10;i++) {
-		if(game.microPrestige.essence >= game.Bupgs.cost[i] && !(game.Bupgs.upgrades.includes('B'+String(i-1)))) {
-			updateClass('B'+String(i-1),'buyable')
+		if(game.microPrestige.essence >= game.Bupgs.cost[i] && !(game.Bupgs.upgrades.includes('B'+String(i+1)))) {
+			updateClass('B'+String(i+1),'buyable')
 		}
-		else if(game.microPrestige.essence < game.Bupgs.cost[i] && !(game.Aupgs.upgrades.includes('B'+String(i-1)))) {
-			updateClass('B'+String(i-1),'unbuyable')
+		else if(game.microPrestige.essence < game.Bupgs.cost[i] && !(game.Aupgs.upgrades.includes('B'+String(i+1)))) {
+			updateClass('B'+String(i+1),'unbuyable')
 		}
 	}
 }
