@@ -94,6 +94,41 @@ function microPrestige() {
 	update('maxCP',format(game.clickPoints.maxClickPoints))
 	update('cpPerSec',format(game.clickPoints.clickPointsPerSec))
 }
+function updateClass(what,whatClass) {
+	document.getElementById(what).class = 'button ' + whatClass
+}
+function updateButtons() {
+	if(game.num >= game.clickPoints.maxCPCost) {
+		updateClass('CP1','buyable')
+	}
+	else{
+		updateClass('CP1','unbuyable')
+	}
+	if(game.num >= game.clickPoints.secCPCost) {
+		updateClass('CP2','buyable')
+	}
+	else{
+		updateClass('CP2','unbuyable')
+	}
+	for(i=0;i<9;i++) {
+		if(game.microPrestige.essence >= game.Aupgs.cost[i] && !(game.Aupgs.upgrades.includes('A'+String(i-1)))) {
+			updateClass('A'+String(i-1),'buyable')
+		}
+		else if(game.microPrestige.essence < game.Aupgs.cost[i] && !(game.Aupgs.upgrades.includes('A'+String(i-1)))) {
+			updateClass('A'+String(i-1),'unbuyable')
+		}
+	}
+	if(game.microPrestige.essence >= game.Aupgs.repeatable.cost) {
+		updateClass('AR','buyable')
+	for(i=0;i<10;i++) {
+		if(game.microPrestige.essence >= game.Bupgs.cost[i] && !(game.Bupgs.upgrades.includes('B'+String(i-1)))) {
+			updateClass('B'+String(i-1),'buyable')
+		}
+		else if(game.microPrestige.essence < game.Bupgs.cost[i] && !(game.Aupgs.upgrades.includes('B'+String(i-1)))) {
+			updateClass('B'+String(i-1),'unbuyable')
+		}
+	}
+}
 function getTriangularNumber(num) {
 	//(n^2-n)/2
 	num *= 2
@@ -186,6 +221,7 @@ function buyAupg(number){
 			game.clickPoints.CPPerUpgrade = 2
 			update('maxCP',format(game.clickPoints.maxClickPoints))
 		}
+		updateClass('A' + String(number),'bought')
 	}
 }
 
