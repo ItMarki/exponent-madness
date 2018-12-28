@@ -400,6 +400,12 @@ function load(save) {
 	update('secCPCost',format(game.clickPoints.secCPCost))
 	update('maxCP',format(game.clickPoints.maxClickPoints))
 	update('cpPerSec',format(game.clickPoints.CPPerSec))
+	for(i=0;i<game.Aupgs.upgrades.length;i++) {
+		updateClass(game.Aupgs.upgrades[i],'bought')
+	}
+	for(i=0;i<game.Bupgs.upgrades.length;i++) {
+		updateClass(game.Bupgs.upgrades[i],'bought')
+	}
 	} catch (e) {
 		console.log('Your save failed to load: '+e)
 	}
