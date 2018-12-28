@@ -3,9 +3,7 @@ body{
 }
 
 .button {
-    background-color: #8B4513; /* Green */
     border: none;
-    color: #DEB887;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -14,3 +12,21 @@ body{
     margin: 4px 2px;
     cursor: pointer;
 }
+.unbuyable {
+  color: #DEB887;
+  background-color: #8B4513
+}
+.buyable {
+  color: #563818;
+  background-color: #E88212
+}
+.buyable:hover {
+  background-color: #563818;
+  color: #E88212
+}
+.bought {
+  color: #ffffff;
+  background-color:#a11b1b
+}
+  
+  
