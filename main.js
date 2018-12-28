@@ -120,6 +120,7 @@ function updateButtons() {
 	}
 	if(game.microPrestige.essence >= game.Aupgs.repeatable.cost) {
 		updateClass('AR','buyable')
+	}
 	for(i=0;i<10;i++) {
 		if(game.microPrestige.essence >= game.Bupgs.cost[i] && !(game.Bupgs.upgrades.includes('B'+String(i-1)))) {
 			updateClass('B'+String(i-1),'buyable')
@@ -452,6 +453,7 @@ function updateThings() { // various updates on each tick
 	update('secCPCost',format(game.clickPoints.secCPCost))
 	update('maxCP',format(game.clickPoints.maxClickPoints))
 	update('cpPerSec',format(game.clickPoints.clickPointsPerSec))
+	updateButtons()
 }
 
 function init() { // initialize
