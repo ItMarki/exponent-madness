@@ -5,6 +5,7 @@ function getDefaultSave(){
         	countdown: 0, // counter for the button cooldown
 		buttonClicks: 0,
 		secondsPlayed:0,
+		timeInMicroPrestige:0,
 		numUpgradeCost:1000,
 		numUpgradeBoost:1,
 		clickPoints:{
@@ -19,7 +20,9 @@ function getDefaultSave(){
         	microPrestige:{
                         essence:0,
                         times:0,
-                        essenceMult:1},
+                        essenceMult:1,
+			totalEssence:0,
+		},
         	notation: 0,// standard notation - clearly the best notation!
 		version : 0.2,
 		numeralsBroken:false,
@@ -64,6 +67,8 @@ function microPrestige() {
                 num:game.Bupgs.upgrades.includes('B2')? 1e10:1,
 		numUpgradeCost:1000,
 		buttonClicks: game.buttonClicks,
+		secondsPlayed:game.secondsPlayed,
+		timeInMicroPrestige:0,
 		numUpgradeBoost:1,
                 mult: 1.5,
                 countdown: 0,
@@ -80,7 +85,8 @@ function microPrestige() {
                 microPrestige:{
                         essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(Math.log(game.num),(1/2.2))):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
                         times: game.microPrestige.times+1,
-                        essenceMult: game.microPrestige.essenceMult
+                        essenceMult: game.microPrestige.essenceMult,
+			totalEssence:game.numeralsBroken? game.microPrestige.totalEssence + Math.floor(Math.pow(Math.log(game.num),(1/2.2))):game.microPrestige.totalEssence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
                 },
                 notation: game.notation,
                 version:game.version,
@@ -411,6 +417,12 @@ function load(save) {
 	if(game.secondsPlayed === undefined) {
 		game.secondsPlayed = 0
 	}
+	if(game.timeInMicroPrestige === undefined) {
+		game.timeInMicroPrestige = 0
+	}
+	if(game.microPrestige.totalEssence === undefined) {
+		game.microPrestige.totalEssence = game.microPrestige.essence
+	}
 	if(game.microPrestige.times > 0) {
 		showElement("microEssenceInfo");
 		showElement("microPrestigeTab");
@@ -463,6 +475,7 @@ function updateThings() { // various updates on each tick
 		game.clickPoints.clickPoints += game.clickPoints.clickPointsPerSec
 		game.countdown = 1000
 		game.timePlayed ++
+		game.timeInMictoPrestige ++
 	}
 	if(game.clickPoints.clickPoints > game.clickPoints.maxClickPoints) {
 		game.clickPoints.clickPoints = game.clickPoints.maxClickPoints
@@ -496,6 +509,8 @@ function updateThings() { // various updates on each tick
 	update('timePlayed',formatTime(game.timePlayed))
 	update('buttonClicks',format(game.buttonClicks))
 	update('microPrestiges',format(game.microPrestige.times))
+	update('microTime',formatTime(game.timeInMicroPrestige))
+	update('totalue',format(game.microPrestige.totalEssence))
 	updateButtons()
 }
 
