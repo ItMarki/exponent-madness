@@ -4,6 +4,7 @@ function getDefaultSave(){
 	        mult: 1.5, // number that it multiplies by on click
         	countdown: 0, // counter for the button cooldown
 		buttonClicks: 0,
+		secondsPlayed:0,
 		numUpgradeCost:1000,
 		numUpgradeBoost:1,
 		clickPoints:{
@@ -387,6 +388,9 @@ function load(save) {
 	}
 	if(game.clickPoints.CPPerSecUpgrade === undefined) {
 		game.clickPoints.CPPerSecUpgrade = game.Bupgs.upgrades.includes('B9')? 1.5:1
+	}
+	if(game.secondsPlayed === undefined) {
+		game.secondsPlayed = 0
 	}
 	if(game.microPrestige.times > 0) {
 		showElement("microEssenceInfo");
