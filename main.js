@@ -101,6 +101,12 @@ function updateClass(what,whatClass) {
 	element.classList.add(whatClass)
 }
 function updateButtons() {
+	if(game.num >= game.numUpgradeCost) {
+		updateClass('Num1','buyable')
+	}
+	else{
+		updateClass('Num1','unbuyable')
+	}
 	if(game.num >= game.clickPoints.maxCPCost) {
 		updateClass('CP1','buyable')
 	}
