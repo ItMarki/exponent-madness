@@ -317,7 +317,26 @@ function format(a) { // formats numbers for display
 	if(game.notation==0) return m2+abbreviate(e2/3-1); // standard notation
 	if(game.notation==2) return m2+"e"+e2; // engineering notation
 }
-
+function formatTime(time) {
+	if(time < 60) return String(time) + ' seconds'
+	if(time < 3600) {
+		var mins = Math.floor(time/60)
+		var secs = time - 60 * mins
+		return String(mins) + ' minutes, ' + String(secs) + ' seconds'
+	}
+	if(time < 3600 * 24) {
+		var hours = Math.floor(time/3600)
+		return String(hours) + ' hours, ' + formatTime(time-3600*hours)
+	}
+	if(time < 3600 * 24 * 365) {
+		var days = Math.floor(time/(3600*24))
+		return String(days) + ' days, ' + formatTime(time-3600*24*days)
+	}
+	else {
+		var years = Math.floor(time/(3600*24*365))
+		return String(years) + ' years, ' + formatTime(time-3600*24*365*years)
+	}
+}
 function switchNotation() { // for switching between notations
 	game.notation++;
 	if(game.notation>notationArray.length-1) game.notation=0;
@@ -443,6 +462,7 @@ function updateThings() { // various updates on each tick
 	if(game.countdown === 0) {
 		game.clickPoints.clickPoints += game.clickPoints.clickPointsPerSec
 		game.countdown = 1000
+		game.timePlayed ++
 	}
 	if(game.clickPoints.clickPoints > game.clickPoints.maxClickPoints) {
 		game.clickPoints.clickPoints = game.clickPoints.maxClickPoints
@@ -473,6 +493,9 @@ function updateThings() { // various updates on each tick
 	update('secCPCost',format(game.clickPoints.secCPCost))
 	update('maxCP',format(game.clickPoints.maxClickPoints))
 	update('cpPerSec',format(game.clickPoints.clickPointsPerSec))
+	update('timePlayed',formatTime(game.timePlayed))
+	update('buttonClicks',format(game.buttonClicks))
+	update('microPrestiges',format(game.microPrestige.times))
 	updateButtons()
 }
 
