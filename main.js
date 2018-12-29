@@ -77,7 +77,7 @@ function microPrestige() {
 		},
 		
                 microPrestige:{
-                        essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(Math.ln(game.num),(1/2.2))):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
+                        essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(Math.log(game.num),(1/2.2))):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
                         times: game.microPrestige.times+1,
                         essenceMult: game.microPrestige.essenceMult
                 },
@@ -128,7 +128,7 @@ function updateButtons() {
 		if(game.microPrestige.essence >= game.Bupgs.cost[i] && !(game.Bupgs.upgrades.includes('B'+String(i+1)))) {
 			updateClass('B'+String(i+1),'buyable')
 		}
-		else if(game.microPrestige.essence < game.Bupgs.cost[i] && !(game.Aupgs.upgrades.includes('B'+String(i+1)))) {
+		else if(game.microPrestige.essence < game.Bupgs.cost[i] && !(game.Bupgs.upgrades.includes('B'+String(i+1)))) {
 			updateClass('B'+String(i+1),'unbuyable')
 		}
 	}
