@@ -474,8 +474,8 @@ function updateThings() { // various updates on each tick
 	if(game.countdown === 0) {
 		game.clickPoints.clickPoints += game.clickPoints.clickPointsPerSec
 		game.countdown = 1000
-		game.timePlayed ++
-		game.timeInMictoPrestige ++
+		game.secondsPlayed ++
+		game.timeInMicroPrestige ++
 	}
 	if(game.clickPoints.clickPoints > game.clickPoints.maxClickPoints) {
 		game.clickPoints.clickPoints = game.clickPoints.maxClickPoints
