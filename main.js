@@ -506,7 +506,7 @@ function updateThings() { // various updates on each tick
 	update('secCPCost',format(game.clickPoints.secCPCost))
 	update('maxCP',format(game.clickPoints.maxClickPoints))
 	update('cpPerSec',format(game.clickPoints.clickPointsPerSec))
-	update('timePlayed',formatTime(game.timePlayed))
+	update('timePlayed',formatTime(game.secondsPlayed))
 	update('buttonClicks',format(game.buttonClicks))
 	update('microPrestiges',format(game.microPrestige.times))
 	update('microTime',formatTime(game.timeInMicroPrestige))
