@@ -40,7 +40,7 @@
                         <button class="button unbuyable" onclick="hardReset()">Reset the game</button>
                         <span id="exportInfo" style="display:none">Here is your export save:<input id="exportSave"></input></span>
                 </div>
-		<div id = 'stats' style = 'display:none'>
+		<div id = 'stats' style = 'display:none; text-align:left'>
 			<p>You have played for<div id = 'timePlayed'>0 seconds</div></p>
 			<p>You have clicked the button<div id = 'buttonClicks'>0</div>times.</p>
 			<p>You have micro prestiged <div id = 'microPrestiges'>0</div> times.</p>
@@ -71,7 +71,7 @@
 			</table>
 		</div>
 		<div id = 'breaknumerals' style = 'display:none'>
-			<button class = 'button unbuyable' onclick = 'breakNumerals()'>Break Numerals!</button>
+			<button class = 'button unbuyable' id = 'break' onclick = 'breakNumerals()'>Break Numerals!</button>
 			<table>
 				<tr>
 					<td><button class = 'button unbuyable' onclick = 'buyBupg(1)' id='B1'>Increase the base multiplier to 3x Cost:160 &micro;E</button></td>
@@ -81,14 +81,14 @@
 				<tr>
 					<td><button class = 'button unbuyable' onclick = 'buyBupg(4)' id='B4'>The growth factor is higher based on the amount of µE you have (1+(log(µE+1))/300). Cost: <div id = 'B4Cost'>1.5K</div> µE</button></td>
 					<td><button class = 'button unbuyable' onclick = 'buyBupg(5)' id='B5'>Button clicks now cost 2 CP.  Cost: <div id = 'B5Cost'>2.5K</div> µE</button></td>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(6)' id='B6'>Increase base growth factor to 4x, requires B1. Cost: <div id = 'B5Cost'>4K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(6)' id='B6'>Increase base growth factor to 4x, requires B1. Cost: <div id = 'B6Cost'>4K</div> µE</button></td>
 					
 				</tr>
 				<tr>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(7)' id='B7'>You get 1 µE every button click. Cost: <div id = 'B6Cost'>18K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(7)' id='B7'>You get 1 µE every button click. Cost: <div id = 'B7Cost'>18K</div> µE</button></td>
 					<td><button class = 'button unbuyable' onclick = 'buyBupg(8)' id='B8'>The growth factor is higher based on total button clicks (1+(log(clicks+1))/310). Cost: <div id = 'B7Cost'>100K</div> µE</button></td>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(9)' id='B9'> You now gain 1.5 CP/s. Cost: <div id = 'B8Cost'>240K</div> µE</button></td>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(10)' id='B10'>Unlock button autoclicker. Cost: <div id = 'B9Cost'>800K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(9)' id='B9'> You now gain 1.5 CP/s. Cost: <div id = 'B9Cost'>240K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(10)' id='B10'>Unlock button autoclicker. Cost: <div id = 'B10Cost'>800K</div> µE</button></td>
 				</tr>
 					
         </body>
