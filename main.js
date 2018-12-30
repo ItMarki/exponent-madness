@@ -178,7 +178,7 @@ function getCurrentClickAmt(){
 function step() { // clicks button
 	if(game.Bupgs.upgrades.includes('B5') && game.clickPoints.clickPoints >= 2) {
 	   	game.num = game.num.mul(getCurrentClickAmt()); // updates number
-		update("numDisplay",format(game.num)); // update number on the page
+		update("numDisplay",formatDecimal(game.num)); // update number on the page
 		game.countdown = 1000; // reset cooldown timer
 		game.clickPoints.clickPoints -= 2
 		update("clickPoints",game.clickPoints.clickPoints); 
@@ -189,7 +189,7 @@ function step() { // clicks button
 	}
 	else if(game.clickPoints.clickPoints >= 3) {
 		game.num = game.num.mul(getCurrentClickAmt()); // updates number
-		update("numDisplay",format(game.num)); // update number on the page
+		update("numDisplay",formatDecimal(game.num)); // update number on the page
 		game.countdown = 1000; // reset cooldown time
 		game.clickPoints.clickPoints -= 3
 		update("clickPoints",game.clickPoints.clickPoints); 
@@ -205,7 +205,7 @@ function numUpgrade() {
 		game.num = game.num.div(game.numUpgradeCost)
 		game.numUpgradeCost = game.numUpgradeCost.mul(1000)
 		game.numUpgradeBoost += 0.0025
-		update('numCost',format(game.numUpgradeCost))
+		update('numCost',formatDecimal(game.numUpgradeCost))
 	}
 }
 //CP Upgrades
@@ -215,7 +215,7 @@ function maxCPUpgrade() {
 		game.clickPoints.maxClickPoints += game.clickPoints.CPPerUpgrade
 		game.clickPoints.maxCPCost = game.clickPoints.maxCPCost.mul(1000)
 		update('maxCP',format(game.clickPoints.maxClickPoints))
-		update('maxCPCost',format(game.clickPoints.maxCPCost))
+		update('maxCPCost',formatDecimal(game.clickPoints.maxCPCost))
 	}
 }
 function CPSecUpgrade() {
@@ -224,7 +224,7 @@ function CPSecUpgrade() {
 		game.clickPoints.clickPointsPerSec += game.clickPoints.CPPerSecUpgrade
 		game.clickPoints.secCPCost = game.clickPoints.secCPCos.mul(1e10)
 		update('cpPerSec',format(game.clickPoints.clickPointsPerSec))
-		update('secCPCost',format(game.clickPoints.secCPCost))
+		update('secCPCost',formatDecimal(game.clickPoints.secCPCost))
 	}
 }
 // A section
@@ -344,6 +344,7 @@ function formatDecimal(a) {
 		m = 1;
 		e++;
 	}
+	if(a<1000) return Math.round(a.mul(1000)).div(1000); // show up to 3 places
 	if (game.notation==1) return m+"e"+e; // scientific notation
 	if (game.notation==3) return "e"+(Math.round(a.log(10).mul(1000)).div(1000)); // log notation
 	var e2 = 3*Math.floor(e/3); // exponent for engineering notation
@@ -462,15 +463,15 @@ function load(save) {
 	game.numUpgradeCost = new Decimal(game.numUpgradeCost)
 	game.clickPoints.maxCPCost = new Decimal(game.clickPoints.maxCPCost)
 	game.clickPoints.secCPCost = new Decimal(game.clickPoints.secCPCost)
-	update("numDisplay",format(game.num));
+	update("numDisplay",formatDecimal(game.num));
 	update("notationDisplay",game.notation);
 	update("multDisplay",getCurrentClickAmt());
 	update("microEssenceDisplay",game.microPrestige.essence);
 	update('RepeatACost',format(game.Aupgs.repeatable.cost))
 	update('microEssenceMult',format(Math.floor(game.microPrestige.essenceMult)))
-	update('numCost',format(game.numUpgradeCost))
-	update('maxCPCost',format(game.clickPoints.maxCPCost))
-	update('secCPCost',format(game.clickPoints.secCPCost))
+	update('numCost',formatDecimal(game.numUpgradeCost))
+	update('maxCPCost',formatDecimal(game.clickPoints.maxCPCost))
+	update('secCPCost',formatDecimal(game.clickPoints.secCPCost))
 	update('maxCP',format(game.clickPoints.maxClickPoints))
 	update('cpPerSec',format(game.clickPoints.CPPerSec))
 	for(i=0;i<game.Aupgs.upgrades.length;i++) {
@@ -500,7 +501,7 @@ function hardReset() {
 
 function updateThings() { // various updates on each tick
 	var ooms = Math.floor(Math.log10(game.num));
-	update("numDisplay",format(game.num));
+	update("numDisplay",formatDecimal(game.num));
 	if(game.countdown>50) game.countdown = game.countdown-50;
 	if(game.countdown<=50&&game.countdown>=0) game.countdown = 0;
 	if(game.countdown === 0) {
@@ -523,7 +524,7 @@ function updateThings() { // various updates on each tick
 			showElement("microPrestigeElement");
 		}
 		else {
-			update('ueOnReset',format(Math.floor(Math.pow(game.num.log(),(1/2.2))*Math.pow(1.1,game.Aupgs.repeatable.amount))))
+			update('ueOnReset',format(Math.floor(game.num.log().pow(1/2.2).mul(Math.pow(1.1,game.Aupgs.repeatable.amount))))
 			showElement("microReset");
 		}
 	}
@@ -534,9 +535,9 @@ function updateThings() { // various updates on each tick
 	update("A7power",format(1+Math.log10(game.microPrestige.times)/10));
 	update('A9power',format(1 + Math.log10(game.clickPoints.clickPoints)/10))
 	update("microEssenceMult",format(Math.pow(1.1,game.Aupgs.repeatable.amount)));
-	update('numCost',format(game.numUpgradeCost))
-	update('maxCPCost',format(game.clickPoints.maxCPCost))
-	update('secCPCost',format(game.clickPoints.secCPCost))
+	update('numCost',formatDecimal(game.numUpgradeCost))
+	update('maxCPCost',formatDecimal(game.clickPoints.maxCPCost))
+	update('secCPCost',formatDecimal(game.clickPoints.secCPCost))
 	update('maxCP',format(game.clickPoints.maxClickPoints))
 	update('cpPerSec',format(game.clickPoints.clickPointsPerSec))
 	update('timePlayed',formatTime(game.secondsPlayed))
