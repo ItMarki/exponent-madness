@@ -176,7 +176,7 @@ function getCurrentClickAmt(){
 }
 
 function step() { // clicks button
-	if(game.Bupgs.upgrades.includes('B5')) {
+	if(game.Bupgs.upgrades.includes('B5') && game.clickPoints.clickPoints >= 2) {
 	   	game.num = game.num*getCurrentClickAmt(); // updates number
 		update("numDisplay",format(game.num)); // update number on the page
 		game.countdown = 1000; // reset cooldown timer
