@@ -337,6 +337,20 @@ function format(a) { // formats numbers for display
 	if(game.notation==0) return m2+abbreviate(e2/3-1); // standard notation
 	if(game.notation==2) return m2+"e"+e2; // engineering notation
 }
+function formatDecimal(a) {
+	var e = a.exponent; // exponent of number
+	var m = a.mantissa; // mantissa of number
+	if (m>9.9995) { // would round up to 10; this avoids a problem
+		m = 1;
+		e++;
+	}
+	if (game.notation==1) return m+"e"+e; // scientific notation
+	if (game.notation==3) return "e"+(Math.round(a.log(10).mul(1000)).div(1000)); // log notation
+	var e2 = 3*Math.floor(e/3); // exponent for engineering notation
+	var m2 = Math.round(1000*m*Math.pow(10,e-e2))/1000; // base in engineering and standard notations
+	if(game.notation==0) return m2+abbreviate(e2/3-1); // standard notation
+	if(game.notation==2) return m2+"e"+e2; // engineering notation
+}
 function formatTime(time) {
 	if(time < 60) return String(time) + ' seconds'
 	if(time < 3600) {
