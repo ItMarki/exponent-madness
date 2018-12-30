@@ -444,7 +444,11 @@ function load(save) {
 	if(game.microPrestige.times >= 100) {
 		showElement('breakNumeralsTab')
 	}
-	update("numDisplay",game.num);
+	game.num = new Decimal(game.num)
+	game.numUpgradeCost = new Decimal(game.numUpgradeCost)
+	game.clickPoints.maxCPCost = new Decimal(game.clickPoints.maxCPCost)
+	game.clickPoints.secCPCost = new Decimal(game.clickPoints.secCPCost)
+	update("numDisplay",format(game.num));
 	update("notationDisplay",game.notation);
 	update("multDisplay",getCurrentClickAmt());
 	update("microEssenceDisplay",game.microPrestige.essence);
@@ -461,10 +465,6 @@ function load(save) {
 	for(i=0;i<game.Bupgs.upgrades.length;i++) {
 		updateClass(game.Bupgs.upgrades[i],'bought')
 	}
-	game.num = new Decimal(game.num)
-	game.numUpgradeCost = new Decimal(game.numUpgradeCost)
-	game.clickPoints.maxCPCost = new Decimal(game.clickPoints.maxCPCost)
-	game.clickPoints.secCPCost = new Decimal(game.clickPoints.secCPCost)
 	} catch (e) {
 		console.log('Your save failed to load: '+e)
 	}
