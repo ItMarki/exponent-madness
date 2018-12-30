@@ -274,21 +274,21 @@ function buyBupg(number) {
 	}
 }
 function updateCosts() {
-	update('B5Cost',2500)
-	update('B6Cost',4000)
-	update('B7Cost',18000)
-	update('B9Cost',2.4e5)
-	update('B10Cost',8e5)
+	update('B5Cost',format(2500))
+	update('B6Cost',format(4000))
+	update('B7Cost',format(18000))
+	update('B9Cost',format(2.4e5))
+	update('B10Cost',format(8e5))
 }
 function breakNumerals() {
 	game.numeralsBroken = true
 	update('break','Fix Numerals')
-	document.getElementById('break').onclick = fixNumerals()
+	document.getElementById('break').onclick = fixNumerals
 }
 function fixNumerals() {
 	game.numeralsBroken = false
 	update('break','Break Numerals!')
-	document.getElementById('break').onclick = breakNumerals()
+	document.getElementById('break').onclick = breakNumerals
 }
 
 
