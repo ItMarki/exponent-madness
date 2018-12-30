@@ -83,10 +83,10 @@ function microPrestige() {
 		},
 		
                 microPrestige:{
-                        essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(Math.log(game.num),(1/2.2))):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
+                        essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(Math.pow(Math.log(game.num),(1/2.2)),Math.pow(1.1,game.Aupgs.repeatable.amount))):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
                         times: game.microPrestige.times+1,
                         essenceMult: game.microPrestige.essenceMult,
-			totalEssence:game.numeralsBroken? game.microPrestige.totalEssence + Math.floor(Math.pow(Math.log(game.num),(1/2.2))):game.microPrestige.totalEssence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
+			totalEssence:game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(Math.pow(Math.log(game.num),(1/2.2)),Math.pow(1.1,game.Aupgs.repeatable.amount))):game.microPrestige.totalEssence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
                 },
                 notation: game.notation,
                 version:game.version,
@@ -491,7 +491,7 @@ function updateThings() { // various updates on each tick
 			showElement("microPrestigeElement");
 		}
 		else {
-			update('ueOnReset',format(Math.floor(Math.pow(Math.log10(game.num),(1/2.2)))))
+			update('ueOnReset',format(Math.floor(Math.pow(Math.log(game.num),(1/2.2)))))
 			showElement("microReset");
 		}
 	}
