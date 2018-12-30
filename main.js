@@ -524,7 +524,7 @@ function updateThings() { // various updates on each tick
 			showElement("microPrestigeElement");
 		}
 		else {
-			update('ueOnReset',format(Math.floor(game.num.log(2.718).pow(1/2.2).mul(Math.pow(1.1,game.Aupgs.repeatable.amount))))
+			update('ueOnReset',format(Math.floor(game.num.log(2.718).pow(1/2.2).mul(Math.pow(1.1,game.Aupgs.repeatable.amount)))))
 			showElement("microReset");
 		}
 	}
