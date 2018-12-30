@@ -1,19 +1,19 @@
 function getDefaultSave(){
 	var game = { // game object to store all save-pertinent info
-	        num: 1, // number that we are increasing
+	        num: new Decimal(1), // number that we are increasing
 	        mult: 1.5, // number that it multiplies by on click
         	countdown: 0, // counter for the button cooldown
 		buttonClicks: 0,
 		secondsPlayed:0,
 		timeInMicroPrestige:0,
-		numUpgradeCost:1000,
+		numUpgradeCost:new Decimal(1000),
 		numUpgradeBoost:1,
 		clickPoints:{
 			clickPoints: 0,
 			maxClickPoints:3,
 			clickPointsPerSec:1,
-			maxCPCost:1000,
-			secCPCost:1e10,
+			maxCPCost:new Decimal(1000),
+			secCPCost:new Decimal(1e10),
 			CPPerUpgrade: 1,
 			CPPerSecUpgrade: 1,
 		},
@@ -64,8 +64,8 @@ function microPrestige() {
 	hideElement("microPrestigeElement");
 	hideElement('microReset')
 	game = {
-                num:game.Bupgs.upgrades.includes('B2')? 1e10:1,
-		numUpgradeCost:1000,
+                num:game.Bupgs.upgrades.includes('B2')? new Decimal(1e10):new Decimal(1),
+		numUpgradeCost:new Decimal(1000),
 		buttonClicks: game.buttonClicks,
 		secondsPlayed:game.secondsPlayed,
 		timeInMicroPrestige:0,
@@ -77,17 +77,17 @@ function microPrestige() {
 			clickPoints: 0,
 			maxClickPoints: game.Aupgs.upgrades.includes('A3')? 6:3,
 			clickPointsPerSec: game.Aupgs.upgrades.includes('A5')? 3:1,
-			maxCPCost:1000,
-			secCPCost:1e10,
+			maxCPCost:new Decimal(1000),
+			secCPCost:new Decimal(1e10),
 			CPPerUpgrade: game.Aupgs.upgrades.includes('A3')? 2:1,
 			CPPerSecUpgrade: game.Bupgs.upgrades.includes('B9')? 1.5:1
 		},
 		
                 microPrestige:{
-                        essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(Math.log(game.num),(1/2.2))*Math.pow(1.1,game.Aupgs.repeatable.amount)):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
+                        essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(game.num.log(),(1/2.2))*Math.pow(1.1,game.Aupgs.repeatable.amount)):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
                         times: game.microPrestige.times+1,
                         essenceMult: game.microPrestige.essenceMult,
-			totalEssence:game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(Math.log(game.num),(1/2.2))*Math.pow(1.1,game.Aupgs.repeatable.amount)):game.microPrestige.totalEssence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
+			totalEssence:game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(game.num.log(),(1/2.2))*Math.pow(1.1,game.Aupgs.repeatable.amount)):game.microPrestige.totalEssence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
                 },
                 notation: game.notation,
                 version:game.version,
@@ -109,19 +109,19 @@ function updateClass(what,whatClass) {
 	element.classList.add(whatClass)
 }
 function updateButtons() {
-	if(game.num >= game.numUpgradeCost) {
+	if(game.num.gte(game.numUpgradeCost)) {
 		updateClass('Num1','buyable')
 	}
 	else{
 		updateClass('Num1','unbuyable')
 	}
-	if(game.num >= game.clickPoints.maxCPCost) {
+	if(game.num.gte(game.clickPoints.maxCPCost)) {
 		updateClass('CP1','buyable')
 	}
 	else{
 		updateClass('CP1','unbuyable')
 	}
-	if(game.num >= game.clickPoints.secCPCost) {
+	if(game.num.gte(game.clickPoints.secCPCost)) {
 		updateClass('CP2','buyable')
 	}
 	else{
@@ -156,15 +156,15 @@ function getTriangularNumber(num) {
 }
 function getPercentageGrowthFactor(){
         var mult = 1
-	if (game.num > 1e5) mult = 1 + 0.0025*Math.max(0,Math.floor(Math.log10(game.num))-5) // the alway additive mult
-        if (game.Aupgs.upgrades.includes("A2") && !(game.Bupgs.upgrades.includes('B3'))) mult *= 1+ 0.012*getTriangularNumber(Math.log10(game.num))
-	if(game.Bupgs.upgrades.includes('B3')) mult *= 1 + 0.015 * getTriangularNumber(Math.log10(game.num))
+	if (game.num.gt(1e5)) mult = 1 + 0.0025*Math.max(0,Math.floor(game.num.log(10))-5) // the alway additive mult
+        if (game.Aupgs.upgrades.includes("A2") && !(game.Bupgs.upgrades.includes('B3'))) mult *= 1+ 0.012*getTriangularNumber(game.num.log(10))
+	if(game.Bupgs.upgrades.includes('B3')) mult *= 1 + 0.015 * getTriangularNumber(game.num.log(10))
 	return mult
 }
 
 function getCurrentClickAmt(){
         var base = game.mult
-        if (game.Aupgs.upgrades.includes("A8") && game.num < 1e33) base *= 5
+        if (game.Aupgs.upgrades.includes("A8") && game.num.lt(1e33)) base *= 5
         base *= getPercentageGrowthFactor()
         if (game.Aupgs.upgrades.includes("A7")) base *= 1+Math.log10(game.microPrestige.times)/10
 	base *= game.numUpgradeBoost
@@ -177,7 +177,7 @@ function getCurrentClickAmt(){
 
 function step() { // clicks button
 	if(game.Bupgs.upgrades.includes('B5') && game.clickPoints.clickPoints >= 2) {
-	   	game.num = game.num*getCurrentClickAmt(); // updates number
+	   	game.num = game.num.mul(getCurrentClickAmt()); // updates number
 		update("numDisplay",format(game.num)); // update number on the page
 		game.countdown = 1000; // reset cooldown timer
 		game.clickPoints.clickPoints -= 2
@@ -188,7 +188,7 @@ function step() { // clicks button
 		game.buttonClicks ++
 	}
 	else if(game.clickPoints.clickPoints >= 3) {
-		game.num = game.num*getCurrentClickAmt(); // updates number
+		game.num = game.num.mul(getCurrentClickAmt()); // updates number
 		update("numDisplay",format(game.num)); // update number on the page
 		game.countdown = 1000; // reset cooldown time
 		game.clickPoints.clickPoints -= 3
@@ -201,28 +201,28 @@ function step() { // clicks button
 	else return 0;
 }
 function numUpgrade() {
-	if(game.num >= game.numUpgradeCost) {
-		game.num /= game.numUpgradeCost
-		game.numUpgradeCost *= 1000
+	if(game.num.gte(game.numUpgradeCost)) {
+		game.num = game.num.div(game.numUpgradeCost)
+		game.numUpgradeCost = game.numUpgradeCost.mul(1000)
 		game.numUpgradeBoost += 0.0025
 		update('numCost',format(game.numUpgradeCost))
 	}
 }
 //CP Upgrades
 function maxCPUpgrade() {
-	if (game.num >= game.clickPoints.maxCPCost) {
-		game.num /= game.clickPoints.maxCPCost
+	if (game.num.gte(game.clickPoints.maxCPCost)) {
+		game.num = game.num.div(game.clickPoints.maxCPCost)
 		game.clickPoints.maxClickPoints += game.clickPoints.CPPerUpgrade
-		game.clickPoints.maxCPCost *= 1000
+		game.clickPoints.maxCPCost = game.clickPoints.maxCPCost.mul(1000)
 		update('maxCP',format(game.clickPoints.maxClickPoints))
 		update('maxCPCost',format(game.clickPoints.maxCPCost))
 	}
 }
 function CPSecUpgrade() {
-	if(game.num >= game.clickPoints.secCPCost) {
-		game.num /= game.clickPoints.secCPCost
+	if(game.num.gte(game.clickPoints.secCPCost)) {
+		game.num = game.num.div(game.clickPoints.secCPCost)
 		game.clickPoints.clickPointsPerSec += game.clickPoints.CPPerSecUpgrade
-		game.clickPoints.secCPCost *= 1e10
+		game.clickPoints.secCPCost = game.clickPoints.secCPCos.mul(1e10)
 		update('cpPerSec',format(game.clickPoints.clickPointsPerSec))
 		update('secCPCost',format(game.clickPoints.secCPCost))
 	}
@@ -461,6 +461,10 @@ function load(save) {
 	for(i=0;i<game.Bupgs.upgrades.length;i++) {
 		updateClass(game.Bupgs.upgrades[i],'bought')
 	}
+	game.num = new Decimal(game.num)
+	game.numUpgradeCost = new Decimal(game.numUpgradeCost)
+	game.clickPoints.maxCPCost = new Decimal(game.clickPoints.maxCPCost)
+	game.clickPoints.secCPCost = new Decimal(game.clickPoints.secCPCost)
 	} catch (e) {
 		console.log('Your save failed to load: '+e)
 	}
@@ -499,13 +503,13 @@ function updateThings() { // various updates on each tick
 	}
 	update('clickPoints',format(game.clickPoints.clickPoints))
 	update("multDisplay",format(getCurrentClickAmt()));
-	if(game.num>=1e33) { // Number overflow?
+	if(game.num.gte(1e33)) { // Number overflow?
 		if(!game.numeralsBroken) {
 			hideElement("increaseNumber");
 			showElement("microPrestigeElement");
 		}
 		else {
-			update('ueOnReset',format(Math.floor(Math.pow(Math.log(game.num),(1/2.2))*Math.pow(1.1,game.Aupgs.repeatable.amount))))
+			update('ueOnReset',format(Math.floor(Math.pow(game.num.log(),(1/2.2))*Math.pow(1.1,game.Aupgs.repeatable.amount))))
 			showElement("microReset");
 		}
 	}
