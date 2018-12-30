@@ -222,7 +222,7 @@ function CPSecUpgrade() {
 	if(game.num.gte(game.clickPoints.secCPCost)) {
 		game.num = game.num.div(game.clickPoints.secCPCost)
 		game.clickPoints.clickPointsPerSec += game.clickPoints.CPPerSecUpgrade
-		game.clickPoints.secCPCost = game.clickPoints.secCPCos.mul(1e10)
+		game.clickPoints.secCPCost = game.clickPoints.secCPCost.mul(1e10)
 		update('cpPerSec',format(game.clickPoints.clickPointsPerSec))
 		update('secCPCost',formatDecimal(game.clickPoints.secCPCost))
 	}
