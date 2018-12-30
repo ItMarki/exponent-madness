@@ -84,10 +84,10 @@ function microPrestige() {
 		},
 		
                 microPrestige:{
-                        essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(game.num.log(2.718),1/1.5) * (Math.pow(1.1,game.Aupgs.repeatable.amount))):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
+                        essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(game.num.log(1.1),1/1.5) * (Math.pow(1.1,game.Aupgs.repeatable.amount))):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
                         times: game.microPrestige.times+1,
                         essenceMult: game.microPrestige.essenceMult,
-			totalEssence:game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(game.num.log(2.718),1/1.5) * (Math.pow(1.1,game.Aupgs.repeatable.amount))):game.microPrestige.totalEssence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
+			totalEssence:game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(game.num.log(1.1),1/1.5) * (Math.pow(1.1,game.Aupgs.repeatable.amount))):game.microPrestige.totalEssence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
                 },
                 notation: game.notation,
                 version:game.version,
@@ -179,7 +179,6 @@ function step() { // clicks button
 	if(game.Bupgs.upgrades.includes('B5') && game.clickPoints.clickPoints >= 2) {
 	   	game.num = game.num.mul(getCurrentClickAmt()); // updates number
 		update("numDisplay",formatDecimal(game.num)); // update number on the page
-		game.countdown = 1000; // reset cooldown timer
 		game.clickPoints.clickPoints -= 2
 		update("clickPoints",game.clickPoints.clickPoints); 
 		if(game.Bupgs.upgrades.includes('B6')) {
@@ -190,7 +189,6 @@ function step() { // clicks button
 	else if(game.clickPoints.clickPoints >= 3) {
 		game.num = game.num.mul(getCurrentClickAmt()); // updates number
 		update("numDisplay",formatDecimal(game.num)); // update number on the page
-		game.countdown = 1000; // reset cooldown time
 		game.clickPoints.clickPoints -= 3
 		update("clickPoints",game.clickPoints.clickPoints); 
 		if(game.Bupgs.upgrades.includes('B6')) {
@@ -524,7 +522,7 @@ function updateThings() { // various updates on each tick
 			showElement("microPrestigeElement");
 		}
 		else {
-			update('ueOnReset',format(Math.floor(Math.pow(game.num.log(2.718),1/1.5) * (Math.pow(1.1,game.Aupgs.repeatable.amount)))))
+			update('ueOnReset',format(Math.floor(Math.pow(game.num.log(1.1),1/1.5) * (Math.pow(1.1,game.Aupgs.repeatable.amount)))))
 			showElement("microReset");
 		}
 	}
