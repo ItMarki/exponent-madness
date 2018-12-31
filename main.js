@@ -325,7 +325,10 @@ function abbreviate(i,short) {
 	returning = unit+ten+hundred
 	for(j=Math.floor(Math.log(i)/Math.log(1000));j>0;j--) {
 		var k = Math.floor(i/Math.pow(1000,j)) % 1000
-		if(k === 1) continue
+		if(k === 1) {
+			returning = thousands[j] + returning
+			continue
+		}
 		returning = abbreviate(k,false) + thousands[j] + returning
 	}
 	return returning;
