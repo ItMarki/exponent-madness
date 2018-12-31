@@ -40,13 +40,6 @@
                         <button class="button unbuyable" onclick="hardReset()">Reset the game</button>
                         <span id="exportInfo" style="display:none">Here is your export save:<input id="exportSave"></input></span>
                 </div>
-		<div id = 'stats' style = 'display:none; text-align:left'>
-			<p>You have played for<div id = 'timePlayed'>0 seconds</div></p>
-			<p>You have clicked the button<div id = 'buttonClicks'>0</div>times.</p>
-			<p>You have micro prestiged <div id = 'microPrestiges'>0</div> times.</p>
-			<p>Time in this micro prestige: <div id = 'microTime'>0 seconds</div></p>
-			<p>Total µE gained: <div id = 'totalue'>0</div></p>
-		</div>
 		<div id="microprestige" style="display:none">
 			<table>
 				<tr>
@@ -90,7 +83,15 @@
 					<td><button class = 'button unbuyable' onclick = 'buyBupg(9)' id='B9'> You now gain 1.5 CP/s. Cost: <div id = 'B9Cost'>240K</div> µE</button></td>
 					<td><button class = 'button unbuyable' onclick = 'buyBupg(10)' id='B10'>Unlock button autoclicker. Cost: <div id = 'B10Cost'>800K</div> µE</button></td>
 				</tr>
-					
+			</table>
+		</div>
+		<div id = 'stats' style = 'display:none; text-align:left'>
+			<p>You have played for<div id = 'timePlayed'>0 seconds</div></p>
+			<p>You have clicked the button<div id = 'buttonClicks'>0</div>times.</p>
+			<p>You have micro prestiged <div id = 'microPrestiges'>0</div> times.</p>
+			<p>Time in this micro prestige: <div id = 'microTime'>0 seconds</div></p>
+			<p>Total µE gained: <div id = 'totalue'>0</div></p>
+		</div>
         </body>
 </html>
 
