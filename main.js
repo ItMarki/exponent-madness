@@ -84,7 +84,7 @@ function microPrestige() {
 		},
 		
                 microPrestige:{
-                        essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(game.num.log(1.1),1/1.5) * (Math.pow(1.1,game.Aupgs.repeatable.amount))):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
+                        essence: game.numeralsBroken? game.microPrestige.essence + Math.floor(game.num.log(1.1)) * (Math.pow(1.1,game.Aupgs.repeatable.amount))):game.microPrestige.essence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
                         times: game.microPrestige.times+1,
                         essenceMult: game.microPrestige.essenceMult,
 			totalEssence:game.numeralsBroken? game.microPrestige.essence + Math.floor(Math.pow(game.num.log(1.1),1/1.5) * (Math.pow(1.1,game.Aupgs.repeatable.amount))):game.microPrestige.totalEssence+Math.round(Math.pow(1.1,game.Aupgs.repeatable.amount)),
