@@ -351,7 +351,7 @@ function format(a) { // formats numbers for display
 }
 function formatDecimal(a) {
 	var e = a.exponent; // exponent of number
-	var m = a.mantissa; // mantissa of number
+	var m = Math.round(a.mantissa*1000)/1000; // mantissa of number
 	if (m>9.9995) { // would round up to 10; this avoids a problem
 		m = 1;
 		e++;
