@@ -315,8 +315,8 @@ function abbreviate(i,short) {
 	var returning = ''
 	var units = ["","U","D","T","Qa","Qi","Sx","Sp","O","N"]; // prefixes for ones place
 	var tens = ["","Dc","Vg","Tg","Qag","Qig","Sxg","Spg","Og","Ng"]; // prefixes for tens place
-	var hundreds = ["","Cn","Dcn","Tcn","Qac","Qic","Sxc","Spx","Ocn","Nc"]
-	var thousands = ['','MI-','MC-','NA-']
+	var hundreds = ["","Cn","Dcn","Tcn","Qac","Qic","Sxc","Spc","Ocn","Nc"]
+	var thousands = ['','Mi-','Mc-','Nn-','Pc-','Fm-']
 	var i2=Math.floor(i/10);
 	var i3=Math.floor(i2/10);
 	var unit = units[i%10];
@@ -351,7 +351,7 @@ function format(a) { // formats numbers for display
 }
 function formatDecimal(a) {
 	var e = a.exponent; // exponent of number
-	var m = Math.round(a.mantissa*1000)/1000; // mantissa of number
+	var m = a.mantissa; // mantissa of number
 	if (m>9.9995) { // would round up to 10; this avoids a problem
 		m = 1;
 		e++;
