@@ -329,7 +329,8 @@ function abbreviate(i,short) {
 			returning = thousands[j] + returning
 			continue
 		}
-		returning = abbreviate(k,false) + thousands[j] + returning
+		var blah = thousands[j]
+		returning = abbreviate(k,false) + blah + returning
 	}
 	return returning;
 }
