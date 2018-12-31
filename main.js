@@ -306,7 +306,7 @@ function hideElement(elementID) { // makes an element invisible
 }
 function abbreviate(i,short) {
 	if(short) {
-		if(i==0) return "k"; // thousand
+		if(i==0) return "K"; // thousand
 		if(i==1) return "M"; // million
 		if(i==2) return "B"; // billion
 		if(i==8) return "Oc";
