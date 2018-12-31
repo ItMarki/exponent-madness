@@ -304,21 +304,31 @@ function showElement(elementID) { // makes an element visible
 function hideElement(elementID) { // makes an element invisible
 	document.getElementById(elementID).style.display="none";
 }
-function abbreviate(i) {
-    if(i==0) return "k"; // thousand
-    if(i==1) return "M"; // million
-    if(i==2) return "B"; // billion
-    if(i==8) return "Oc";
-    if(i==9) return "No";
-    var units = ["","U","D","T","Qa","Qi","Sx","Sp","O","N"]; // prefixes for ones place
-    var tens = ["","Dc","Vg","Tg","Qag","Qig","Sxg","Spg","Og","Ng"]; // prefixes for tens place
-    var hundreds = ["","Cn","Dcn","Tcn","Qac","Qic","Sxc","Spx","Ocn","Nc"]
-    var i2=Math.floor(i/10);
-    var i3=Math.floor(i2/10);
-    var unit = units[i%10];
-    var ten = tens[i2%10];
-    var hundred = hundreds[i3%10];
-    return unit+ten+hundred;
+function abbreviate(i,short) {
+	if(short) {
+		if(i==0) return "k"; // thousand
+		if(i==1) return "M"; // million
+		if(i==2) return "B"; // billion
+		if(i==8) return "Oc";
+		if(i==9) return "No";
+	}
+	var returning = ''
+	var units = ["","U","D","T","Qa","Qi","Sx","Sp","O","N"]; // prefixes for ones place
+	var tens = ["","Dc","Vg","Tg","Qag","Qig","Sxg","Spg","Og","Ng"]; // prefixes for tens place
+	var hundreds = ["","Cn","Dcn","Tcn","Qac","Qic","Sxc","Spx","Ocn","Nc"]
+	var thousands = ['','MI-','MC-','NA-']
+	var i2=Math.floor(i/10);
+	var i3=Math.floor(i2/10);
+	var unit = units[i%10];
+	var ten = tens[i2%10];
+	var hundred = hundreds[i3%10];
+	returning = unit+ten+hundred
+	for(j=Math.floor(log(i,1000));j>0;j--) {
+		var k = Math.floor(i/Math.pow(1000,j)) % 1000
+		if(k === 1) continue
+		returning = abbreviate(k,false) + thousands[j] + returning
+	}
+	return returning;
 }
 function format(a) { // formats numbers for display
 	var e = Math.floor(Math.log10(a)); // exponent of number
@@ -332,7 +342,7 @@ function format(a) { // formats numbers for display
 	if (game.notation==3) return "e"+(Math.round(1000*Math.log10(a))/1000); // log notation
 	var e2 = 3*Math.floor(e/3); // exponent for engineering notation
 	var m2 = Math.round(1000*m*Math.pow(10,e-e2))/1000; // base in engineering and standard notations
-	if(game.notation==0) return m2+abbreviate(e2/3-1); // standard notation
+	if(game.notation==0) return m2+abbreviate(e2/3-1,true); // standard notation
 	if(game.notation==2) return m2+"e"+e2; // engineering notation
 }
 function formatDecimal(a) {
@@ -347,7 +357,7 @@ function formatDecimal(a) {
 	if (game.notation==3) return "e"+(Math.round(a.log(10).mul(1000)).div(1000)); // log notation
 	var e2 = 3*Math.floor(e/3); // exponent for engineering notation
 	var m2 = Math.round(1000*m*Math.pow(10,e-e2))/1000; // base in engineering and standard notations
-	if(game.notation==0) return m2+abbreviate(e2/3-1); // standard notation
+	if(game.notation==0) return m2+abbreviate(e2/3-1,true); // standard notation
 	if(game.notation==2) return m2+"e"+e2; // engineering notation
 }
 function formatTime(time) {
