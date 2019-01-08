@@ -1,97 +1,97 @@
 <!DOCTYPE html>
 <html>
         <head>
-		<title>Exponent Madness</title>
+		<title>指數瘋狂</title>
 		<script src='break_infinity.js'></script>
                 <script src= "main.js"></script>
                 <link rel="stylesheet" type="text/css" href="style.css">
         </head>
         <body onload="init()">
-                <p>Number: <div id="numDisplay">1</div></p>
-                <p style="text-align:right;"><div id="microEssenceInfo" style="display:none">Micro Essence: <div id="microEssenceDisplay">0</div></div></p>
-                <button class="button unbuyable" onclick="switchTab('main')">Main</button>
-                <button class="button unbuyable" onclick="switchTab('options')">Options</button>
-		<button class = 'button unbuyable' onclick = 'switchTab("stats")'>Statistics</button>
-                <button id="microPrestigeTab" class="button unbuyable" style="display:none" onclick="switchTab('microprestige')">Micro Prestige</button>
-                <button id = 'breakNumeralsTab' class = 'button unbuyable' style = 'display:none' onclick = "switchTab('breaknumerals')">Break Numerals</button>
+                <p>數字：<div id="numDisplay">1</div></p>
+                <p style="text-align:right;"><div id="microEssenceInfo" style="display:none">微精：<div id="microEssenceDisplay">0</div></div></p>
+                <button class="button unbuyable" onclick="switchTab('main')">主</button>
+                <button class="button unbuyable" onclick="switchTab('options')">設定</button>
+		<button class = 'button unbuyable' onclick = 'switchTab("stats")'>統計</button>
+                <button id="microPrestigeTab" class="button unbuyable" style="display:none" onclick="switchTab('microprestige')">微聲望</button>
+                <button id = 'breakNumeralsTab' class = 'button unbuyable' style = 'display:none' onclick = "switchTab('breaknumerals')">突破數字</button>
 		<div id="main" style="display:inline-block">
                         <div id="increaseNumber">
-                                <button class="button unbuyable" onclick="step()">Multiply the number by <div id="multDisplay">1.5</div> for 3 Click Points</button>
-                                <p>You have <div id="clickPoints">0</div> Click Points.</p>
-                                <p>You are gaining <div id = 'cpPerSec'>1</div> per second</p>
-                                <p>Your max Click Points is <div id = 'maxCP'>3</div></p>
+                                <button class="button unbuyable" onclick="step()">以3按點將數字乘以<div id="multDisplay">1.5</div></button>
+                                <p>你有<div id="clickPoints">0</div>按點。</p>
+                                <p>你每秒增加<div id = 'cpPerSec'>1</div>按點。</p>
+                                <p>你最大按點是<div id = 'maxCP'>3</div>。</p>
                         </div>
                         <div id = 'numberUpgrades'>
-                                <button class = 'button unbuyable' onclick = 'numUpgrade()' id = 'Num1'>Increase growth rate by 0.25 percent. Cost: Divides your number by<div id = 'numCost'>1000</div></button>
-                                <button class = 'button unbuyable' onclick = 'maxCPUpgrade()' id = 'CP1'>Increase your max CP by 1. Cost: Divides your number by <div id = 'maxCPCost'>1000</div></button>
-                                <button class = 'button unbuyable' onclick = 'CPSecUpgrade()' id = 'CP2'>Increase your CP/sec by 1. Cost: Divides your number by <div id = 'secCPCost'>10B</div></button>
+                                <button class = 'button unbuyable' onclick = 'numUpgrade()' id = 'Num1'>將增加率加以0.25%。成本：將數字除以<div id = 'numCost'>1000</div></button>
+                                <button class = 'button unbuyable' onclick = 'maxCPUpgrade()' id = 'CP1'>最大按點加以1。成本：將數字除以<div id = 'maxCPCost'>1000</div></button>
+                                <button class = 'button unbuyable' onclick = 'CPSecUpgrade()' id = 'CP2'>每秒按點加以1。成本：將數字除以<div id = 'secCPCost'>10B</div></button>
                         </div>                
                         <div id="microPrestigeElement" style="display:none">
-                                Your number has overflowed, you must reset to continue.
-                                <button class="button unbuyable" onclick="microPrestige()">Reset your number, but get 1 Micro essence for upgrades.</button>
+                                你的數字溢出了，你一定要重置來繼續。
+                                <button class="button unbuyable" onclick="microPrestige()">重置數字，但是你會獲得1微精，用來升級。</button>
                         </div>
-                        <button class = 'button unbuyable' onclick = 'microPrestige()' style = 'display:none' id = 'microReset'>Reset your number, but gain <div id = 'ueOnReset'>1</div> Micro Essence</button>
+                        <button class = 'button unbuyable' onclick = 'microPrestige()' style = 'display:none' id = 'microReset'>重置數字，但是你會獲得<div id = 'ueOnReset'>1</div> 微精</button>
                 </div>
                 <div id="options" style="display:none">
-                        <button class="button unbuyable" onclick="save()">Save</button>
-                        <button class="button unbuyable" onclick="importGame()">Import</save>
-                        <button class="button unbuyable" onclick="exportGame()">Export</button>
-                        <button class="button unbuyable" onclick="switchNotation()">Notation: <div id="notationDisplay">Standard</div></button>
-                        <button class="button unbuyable" onclick="hardReset()">Reset the game</button>
-                        <span id="exportInfo" style="display:none">Here is your export save:<input id="exportSave"></input></span>
+                        <button class="button unbuyable" onclick="save()">保存</button>
+                        <button class="button unbuyable" onclick="importGame()">導入</save>
+                        <button class="button unbuyable" onclick="exportGame()">導出</button>
+                        <button class="button unbuyable" onclick="switchNotation()">數據格式：<div id="notationDisplay">標準格式</div></button>
+                        <button class="button unbuyable" onclick="hardReset()">重置遊戲</button>
+                        <span id="exportInfo" style="display:none">中這是你的導出存檔：<input id="exportSave"></input></span>
                 </div>
 		<div id="microprestige" style="display:none">
 			<table>
 				<tr>
-					<td><button class="button unbuyable" onclick="buyAupg(1)" id='A1'>Increase the base multiplier to 1.8667x.<br>Cost: 1 &micro;E</button></td>
-					<td><button class="button unbuyable" onclick="buyAupg(2)" id='A2'>The number increases 1.2% per order of magnitude, additive.<br>Cost: 1 &micro;E</button></td>
-					<td><button class="button unbuyable" onclick="buyAupg(3)" id='A3'>Max CP is doubled<br>Cost: 2 &micro;E</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(1)" id='A1'>基本增加率增加到1.8667倍<br>成本：1 &micro;E</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(2)" id='A2'>每數量級，數字增加1.2%，附加的<br>成本：1 &micro;E</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(3)" id='A3'>最大CP乘以2倍<br>成本：2 &micro;E</button></td>
 				</tr>
 				<tr>
-					<td><button class="button unbuyable" onclick="buyAupg(4)" id='A4'>Increase the base multiplier to 2.5x.<br>Cost: 5 &micro;E</button></td>
-					<td><button class="button unbuyable" onclick="buyAupg(5)" id='A5'>You start micro prestiges with 3 CP/sec<br>Cost: 10 &micro;E</button></td>
-					<td><button class = 'button unbuyable' onclick = 'buyAupg(6)' id='A6'>The growth factor is higher based on unspent µE. <br>Currently: <span id = 'A6power'>1</span>x.<br>Cost:14 µE</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(4)" id='A4'>基本增加率增加到2.5倍<br>成本：5 &micro;E</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(5)" id='A5'>從3 CP每秒開始<br>成本：10 &micro;E</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyAupg(6)' id='A6'>基於未分配的µE，增強基本增加率<br>當前：<span id = 'A6power'>1</span>倍。<br>成本：14 µE</button></td>
 				</tr>
 				<tr>
-					<td><button class="button unbuyable" onclick="buyAupg(7)" id='A7'>Increase the base multiplier based on number of micro prestiges.<br>Currently: <span id="A7power">1</span>x.<br>Cost: 18 &micro;E</button></td>
-					<td><button class="button unbuyable" onclick="buyAupg(8)" id='A8'>Increase the base multiplier by 5x if your number is below 1e33.<br>Cost: 50 &micro;E</button></td>
-					<td><button class = 'button unbuyable' onclick = 'buyAupg(9)' id='A9'> The growth factor is higher based on your current CP amount.<br>Currently: <span id = 'A9power'>1</span>x.<br>Cost: 100 µE</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(7)" id='A7'>基於微聲望的次數，增強基本增加率<br>當前：<span id="A7power">1</span>倍。<br>成本：18 &micro;E</button></td>
+					<td><button class="button unbuyable" onclick="buyAupg(8)" id='A8'>如果數字是1e33一下，基本增加率乘以5倍。<br>成本：50 &micro;E</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyAupg(9)' id='A9'>基於你現在的CP數量，增強增加率<br>當前:<span id = 'A9power'>1</span>倍。<br>成本：100 µE</button></td>
 				</tr>
 				<tr>
-					<td><button class="button unbuyable" onclick="buyRepeatA()" id='AR'>You gain 10% more &micro;E.<br>Currently: <span id="microEssenceMult">1</span>x.<br>Cost: <span id="RepeatACost">25</span> &micro;E</button></td>
-					<td><button class="button unbuyable" onclick="buyMaxRepeatA()">Max &micro;E Mult</button></td>
+					<td><button class="button unbuyable" onclick="buyRepeatA()" id='AR'>獲得的&micro;E增加10%<br>當前<span id="microEssenceMult">1</span>倍。<br>成本：<span id="RepeatACost">25</span> &micro;E</button></td>
+					<td><button class="button unbuyable" onclick="buyMaxRepeatA()">購買最大&micro;E倍數</button></td>
 				</tr>
 			</table>
 		</div>
 		<div id = 'breaknumerals' style = 'display:none'>
-			<button class = 'button unbuyable' id = 'break' onclick = 'breakNumerals()'>Break Numerals!</button>
+			<button class = 'button unbuyable' id = 'break' onclick = 'breakNumerals()'>突破數字！</button>
 			<table>
 				<tr>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(1)' id='B1'>Increase the base multiplier to 3x Cost:160 &micro;E</button></td>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(2)' id='B2'>You start with <div id = 'B2Effect'>10B</div> Cost: 350 &micro;E</button></td>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(3)' id='B3'>The growth factor is higher based on the order of magnitudes the number has (1OoM=1.5%, 3OoM=3%…). Removes the effect of A2. Cost: 720 µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(1)' id='B1'>基本增加率增加到3倍 成本：160 &micro;E</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(2)' id='B2'>從數字為<div id = 'B2Effect'>10B</div>開始 成本：350 &micro;E</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(3)' id='B3'>基於數字的數量級，增強增加率(1OoM=1.5%, 3OoM=3%…)。 禁止A2效果。 成本：720 µE</button></td>
 				</tr>
 				<tr>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(4)' id='B4'>The growth factor is higher based on the amount of µE you have (1+(log(µE+1))/300). Cost: <div id = 'B4Cost'>1.5K</div> µE</button></td>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(5)' id='B5'>Button clicks now cost 2 CP.  Cost: <div id = 'B5Cost'>2.5K</div> µE</button></td>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(6)' id='B6'>Increase base growth factor to 4x, requires B1. Cost: <div id = 'B6Cost'>4K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(4)' id='B4'>基於你擁有的µE，增強增加率 成本：<div id = 'B4Cost'>1.5K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(5)' id='B5'>按按鈕成本為2 CP  成本：<div id = 'B5Cost'>2.5K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(6)' id='B6'>基本增加率增加到3倍，需要B1 成本：<div id = 'B6Cost'>4K</div> µE</button></td>
 					
 				</tr>
 				<tr>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(7)' id='B7'>You get 1 µE every button click. Cost: <div id = 'B7Cost'>18K</div> µE</button></td>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(8)' id='B8'>The growth factor is higher based on total button clicks (1+(log(clicks+1))/310). Cost: <div id = 'B7Cost'>100K</div> µE</button></td>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(9)' id='B9'> You now gain 1.5 CP/s. Cost: <div id = 'B9Cost'>240K</div> µE</button></td>
-					<td><button class = 'button unbuyable' onclick = 'buyBupg(10)' id='B10'>Unlock button autoclicker. Cost: <div id = 'B10Cost'>800K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(7)' id='B7'>每次按按鈕，你會獲得1 µE 成本：<div id = 'B7Cost'>18K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(8)' id='B8'>基於總按鈕次數，增強增加率 成本<div id = 'B7Cost'>100K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(9)' id='B9'>你每秒獲得1.5 CP 成本：<div id = 'B9Cost'>240K</div> µE</button></td>
+					<td><button class = 'button unbuyable' onclick = 'buyBupg(10)' id='B10'>解鎖自動按按鈕 成本：<div id = 'B10Cost'>800K</div> µE</button></td>
 				</tr>
 			</table>
 		</div>
 		<div id = 'stats' style = 'display:none; text-align:left'>
-			<p>You have played for<div id = 'timePlayed'>0 seconds</div></p>
-			<p>You have clicked the button<div id = 'buttonClicks'>0</div>times.</p>
-			<p>You have micro prestiged <div id = 'microPrestiges'>0</div> times.</p>
-			<p>Time in this micro prestige: <div id = 'microTime'>0 seconds</div></p>
-			<p>Total µE gained: <div id = 'totalue'>0</div></p>
+			<p>你在本遊戲玩了<div id = 'timePlayed'>0 秒</div>。</p>
+			<p>你按了<div id = 'buttonClicks'>0</div>次按鈕。</p>
+			<p>你進行了<div id = 'microPrestiges'>0</div>次微聲望。</p>
+			<p>你在本此微聲望花費了<div id = 'microTime'>0 秒</div>。</p>
+			<p>總獲得µE：<div id = 'totalue'>0</div></p>
 		</div>
-                <center><h3><a href="https://itmarki.github.io/exponent-madness/changelog.html">Changelog</a></h3></center>
+                <center><h3><a href="https://itmarki.github.io/exponent-madness/changelog.html">更新日誌</a></h3></center>
         </body>
 </html>
