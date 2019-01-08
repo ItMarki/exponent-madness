@@ -397,23 +397,23 @@ function formatDecimal(a) {
 	if(game.notation==3) return m2+"e"+e2; // engineering notation
 }
 function formatTime(time) {
-	if(time < 60) return String(time) + ' seconds'
+	if(time < 60) return String(time) + '秒'
 	if(time < 3600) {
 		var mins = Math.floor(time/60)
 		var secs = time - 60 * mins
-		return String(mins) + ' minutes, ' + String(secs) + ' seconds'
+		return String(mins) + '分鐘， ' + String(secs) + '秒'
 	}
 	if(time < 3600 * 24) {
 		var hours = Math.floor(time/3600)
-		return String(hours) + ' hours, ' + formatTime(time-3600*hours)
+		return String(hours) + '小時，' + formatTime(time-3600*hours)
 	}
 	if(time < 3600 * 24 * 365) {
 		var days = Math.floor(time/(3600*24))
-		return String(days) + ' days, ' + formatTime(time-3600*24*days)
+		return String(days) + '天，' + formatTime(time-3600*24*days)
 	}
 	else {
 		var years = Math.floor(time/(3600*24*365))
-		return String(years) + ' years, ' + formatTime(time-3600*24*365*years)
+		return String(years) + '年，' + formatTime(time-3600*24*365*years)
 	}
 }
 function switchNotation() { // for switching between notations
