@@ -294,7 +294,7 @@ function fixNumerals() {
 //otherwise know to pg as the dont touch funcs xD
 
 var currentTab = "main";
-	var notationArray = ['Standard',"Standard 2.0","Scientific","Engineering","Logarithm"];
+	var notationArray = ['Standard',"Standard 2.0","Scientific","Engineering","Logarithm","Chinese Numerals"];
 function update(set,get){ // for updating display
 	document.getElementById(set).innerHTML=get
 }
@@ -395,6 +395,13 @@ function formatDecimal(a) {
 	if(game.notation==0) return m2+abbreviate(e2/3-1,true)// standard notation
 	if(game.notation==1) return m2+abbreviate2(e2/3-1,true); // standard 2.0 notation
 	if(game.notation==3) return m2+"e"+e2; // engineering notation
+	if(game.notation==5) return chinesenumerals(a); // chinese numerals notation
+}
+function chinesenumerals(x){
+  if (x<1e4) return String(x);
+  var cnnm = ['萬','億','兆','京','垓','秭','穰','溝','澗','正','載'];
+  var i=Math.floor(Math.log10000(x)/3);
+  return x/Math.pow(10000,i)+(i%11?"":cnnm.charAt(x-1))+"z".repeat(i/11);
 }
 function formatTime(time) {
 	if(time < 60) return String(time) + '秒'
